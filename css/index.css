@@ -23,11 +23,136 @@
 .monitor{
     height : 6rem;
 }
+.monitor .inner{
+    padding : .3rem 0;
+    display:flex;
+    flex-direction:column;
+}
+.monitor .tabs{
+    display: flex;
+    margin-bottom: 0.225rem;
+    padding : 0 .45rem;
+}
+
+.monitor .tabs span{
+    color :  #1950c4;
+    padding : 0 .3375rem;
+    font-size: .225rem;
+    cursor: pointer;
+}
+.monitor .tabs span:nth-child(1){
+    padding-left : 0;
+    border-right : .025rem solid #00f2f1;
+}
+
+.monitor .tabs span.active{
+    color : #fff;
+}
+.monitor .content{
+    display : none;
+    flex : 1;
+    position: relative;
+}
+.monitor .content .head{
+    font-size : .175rem;
+    padding: 0.15rem 0.45rem;
+    display: flex;
+    justify-content: space-between;
+    line-height: 1.05;
+    color : #68d8fe ;
+    background-color: rgba(255,255,255,0.2);
+}
+.monitor  .col:nth-child(1){
+    width: 1rem;
+}
+.monitor  .col:nth-child(2){
+    width: 2.5rem; 
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.monitor  .col:nth-child(3){
+    width: 1rem;
+}
+.monitor .marquee-view{
+    position: absolute;
+    bottom : 0;
+    top: 0.5rem;
+    width : 100%;
+    overflow: hidden;
+}
+.monitor .marquee-view .marquee{
+    animation: move 15s linear infinite;
+}
+.monitor .marquee .row{
+    display:flex;
+    font-size : .175rem;
+    line-height: 1.05;
+    color: #61a8ff;
+    position: relative;
+    justify-content: space-between;
+    padding: 0.15rem 0.45rem;
+}
+.monitor .marquee:hover{
+    animation-play-state: paused;
+}
+.monitor .marquee .row:hover{
+    background-color: rgba(255,255,255,0.2);
+    color: #68d8fe;
+}
+.monitor .marquee .row:hover .icon-dot{
+    opacity: 1;
+}
+
+.monitor .marquee .icon-dot{
+    position:absolute;
+    left : 0.2rem;
+    opacity: 0;
+}
+@keyframes move {
+    0%{}
+    100%{
+        transform: translateY(-50%);
+    }
+}
+
 
 /* 点位 */
 .point{
     height : 4.25rem;
 }
+.point .inner{
+    display: flex;
+    flex-direction: column;
+}
+.point .chart{
+    display: flex;
+    justify-content: space-between;
+}
+.point .chart .pie{
+    width: 3.9rem;
+    height: 3rem;
+    margin-left: -0.25rem;
+}
+.point .chart .data{
+    width: 2.1rem;
+    min-width: 100px;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    justify-content:space-between;
+    padding: .45rem .375rem;
+    background: url("../image/rect.png") no-repeat 0 0 / cover;
+}
+.point .chart .data h4{
+    color : #fff;
+    margin-bottom: 0.15rem;
+    font-size: .35rem;
+}
+.point .chart .data span{
+    color: #4c9bfd;
+    font-size: .2rem;
+}
+
 
 /* 地图 */
 .map{
