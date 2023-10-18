@@ -1,0 +1,94 @@
+/*清除元素默认的内外边距  */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  /*让所有斜体 不倾斜*/
+  em,
+  i {
+    font-style: normal;
+  }
+  /*去掉列表前面的小点*/
+  li {
+    list-style: none;
+  }
+  /*图片没有边框   去掉图片底侧的空白缝隙*/
+  img {
+    border: 0; /*ie6*/
+    vertical-align: middle;
+  }
+  /*让button 按钮 变成小手*/
+  button {
+    cursor: pointer;
+  }
+  /*取消链接的下划线*/
+  a {
+    color: #666;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    color: #e33333;
+  }
+  h4 {
+    font-weight: 400;
+  }
+
+  @media screen and (max-width:1024px) {
+    html{
+      font-size: 42.66px !important;
+    }
+  }
+  @media screen and (min-width:1920px) {
+    html{
+      font-size: 80px !important;
+    }
+  }
+
+  body{
+    font-family: Arial, Helvetica, sans-serif;
+    background: url("../image/bg.jpg") no-repeat 0 0 / cover;
+}
+
+.viewport{
+    min-width : 1024px;
+    max-width : 1920px;
+    min-height: 780px;
+    margin: 0 auto;
+    color : #fff;
+    display: flex;
+    padding: 1.1875rem .25rem 0;
+    background:  url("../image/logo.png") no-repeat 0 0 / contain;
+}
+
+.viewport .column{
+    flex : 3;
+}
+.viewport .column:nth-child(2){
+    flex : 4;
+    margin: .4rem .25rem ;
+}
+
+.panel{
+    position: relative;
+    border: .1875rem solid transparent;
+    border-image-source: url("../image/border.png") ;
+    border-image-slice: 51 38 20 132;
+    border-image-repeat: stretch;
+    border-width: .6375rem .475rem .25rem 1.65rem;
+    margin-bottom: .25rem;
+}
+.inner{
+    position:absolute;
+    left : -1.65rem;
+    top : -0.6375rem;
+    right : -0.475rem;
+    bottom : -0.25rem;
+    padding: .3rem .45rem;
+}
+h3{
+  color: #fff;
+  font-weight: 400;
+  font-size:  0.25rem;
+}
