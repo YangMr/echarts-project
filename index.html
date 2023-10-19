@@ -228,12 +228,35 @@
         <div class="column">
             <!-- 地图 -->
             <div class="map">
-                <h3>设备数据统计</h3>
+                <h3>
+                    <span class="iconfont icon-cube"></span>
+                    设备数据统计
+                </h3>
+                <div class="geo"></div>
             </div>
             <!-- 用户 -->
             <div class="users panel">
                 <div class="inner">
                     <h3>全国用户总量统计</h3>
+                    <div class="chart">
+                        <div class="bar"></div>
+                        <div class="data">
+                            <div class="item">
+                                <h4>161,888</h4>
+                                <span>
+                                    <i class="iconfont icon-dot"></i>
+                                    用户总量
+                                </span>
+                            </div>
+                            <div class="item">
+                                <h4>248</h4>
+                                <span>
+                                    <i class="iconfont icon-dot"></i>
+                                    本月新增
+                                </span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -242,13 +265,44 @@
             <!--订单-->
             <div class="order panel">
                 <div class="inner">
-                    
+                    <div class="filter">
+                        <span data-index="day365" class="active">365天</span>
+                        <span data-index="day90">90天</span>
+                        <span data-index="day30">30天</span>
+                        <span data-index="day1">24小时</span>
+                    </div>
+                    <div class="data">
+                        <div class="item">
+                            <h4></h4>
+                            <span>
+                                <i class="iconfont icon-dot"></i>
+                                订单量
+                            </span>
+                        </div>
+                        <div class="item">
+                            <h4></h4>
+                            <span>
+                                <i class="iconfont icon-dot"></i>
+                                销售额(万元)
+                            </span>
+                        </div>
+                    </div>
                 </div>
             </div>
             <!-- 销售 -->
             <div class="sales panel">
                 <div class="inner">
-                    <h3>销售额统计</h3>
+                    <div class="caption">
+                        <h3>销售额统计</h3>
+                        <span data-index="year" class="active">年</span>
+                        <span data-index="quarter">季</span>
+                        <span data-index="month">月</span>
+                        <span data-index="week">周</span>
+                    </div>
+                    <div class="chart">
+                        <div class="label">单位:万</div>
+                        <div class="line"></div>
+                    </div>
                 </div>
             </div>
             <!-- 渠道与销售进度 -->
