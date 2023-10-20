@@ -254,8 +254,181 @@
 (function(){
  
 
+ 
+
+  /***
+   * 1. 下载echarts (完成)
+   * 2. 引入echarts (完成)
+   * 3. 创建渲染的画布 (完成)
+   * 4. 实例化echarts, 并指定渲染的画布   (完成)
+   * 5. 创建配置项  (完成)
+   * 6. 渲染数据
+   * 7. 设置图表自适应
+   */
+
+ 
+
+  const line = document.querySelector(".line")
+  const echartsInstance = echarts.init(line)
+  
+  const data = {
+    year: {
+      info: [
+        '2099年',
+        '2199年',
+        '2299年',
+        '2399年',
+        '2499年',
+        '2599年',
+        '2699年',
+        '2799年',
+        '2899年',
+        '2999年',
+        '3099年',
+        '3199年'
+      ],
+      detail: [
+        [24, 40, 101, 134, 90, 230, 210, 230, 120, 230, 210, 120],
+        [40, 64, 191, 324, 290, 330, 310, 213, 180, 200, 180, 79]
+      ]
+    },
+  
+    quarter: {
+      info: ['1季度', '2季度', '3季度', '4季度'],
+      detail: [
+        [23, 75, 12, 97],
+        [43, 31, 65, 23]
+      ]
+    },
+  
+    month: {
+      info: [
+        '1月',
+        '2月',
+        '3月',
+        '4月',
+        '5月',
+        '6月',
+        '7月',
+        '8月',
+        '9月',
+        '10月',
+        '11月',
+        '12月'
+      ],
+      detail: [
+        [34, 87, 32, 76, 98, 12, 32, 87, 39, 36, 29, 36],
+        [56, 43, 98, 21, 56, 87, 43, 12, 43, 54, 12, 98]
+      ]
+    },
+  
+    week: {
+      info: ['近1周', '近2周', '近3周', '近4周', '近5周', '近6周'],
+      detail: [
+        [43, 73, 62, 54, 91, 54, 84, 43, 86, 43, 54, 53],
+        [32, 54, 34, 87, 32, 45, 62, 68, 93, 54, 54, 24]
+      ]
+    }
+  };
+  
+  const option = {
+    tooltip: {
+      trigger: 'axis'
+    },
+    legend: {
+      data: ['预期销售额', '实际销售额'],
+      // 图例的文字颜色
+      textStyle: {
+        color: '#4c9bfd'
+      },
+      // 设置图例距离右侧10%的间距
+      right: '10%'
+    },
+    // 网格
+    grid: {
+      top: '20%',
+      left: '3%',
+      right: '4%',
+      bottom: '3%',
+      // 是否显示网格边框
+      show: true,
+      // 设置边框颜色
+      borderColor: '#012f4a',
+      // 是否显示在刻度轴内
+      containLabel: true
+    },
+    xAxis: {
+      type: 'category',
+      boundaryGap: false,
+      data: data.year.info,
+      // x刻度轴显示与隐藏
+      axisTick: {
+        show: false
+      },
+      // x刻度轴文本的颜色
+      axisLabel: {
+        color: '#4c9bfd' // 文本颜色
+      },
+      //去除 x 轴线 
+      axisLine: {
+        show: false // 去除轴线
+      }
+    },
+    yAxis: {
+      type: 'value',
+      axisTick: {
+        show: false // 去除刻度
+      },
+      axisLabel: {
+        color: '#4c9bfd' // 文字颜色
+      },
+      splitLine: {
+        lineStyle: {
+          color: '#012f4a'
+        }
+      }
+    },
+    color: ['#00f2f1', '#ed3f35'],
+    series: [
+      {
+        name: '预期销售额',
+        type: 'line',
+        stack: 'Total',
+        // 折线修饰为圆滑
+        smooth: true,
+        data: data.year.detail[0]
+      },
+      {
+        name: '实际销售额',
+        type: 'line',
+        stack: 'Total',
+        // 折线修饰为圆滑
+        smooth: true,
+        data: data.year.detail[1]
+      }
+    ]
+  }
+
+  echartsInstance.setOption(option)
+  window.addEventListener("resize", () => {
+    echartsInstance.resize()
+  })
+
+  
+
+  $(".caption span").click(function(){
+    const index = ($(this).index()) - 1
+    render(index)
+    
+  })
+
   function render(index){
     $(".caption span").eq(index).addClass("active").siblings("span").removeClass("active")
+    const item = data[$(".caption span").get(index).dataset.index]
+    option.xAxis.data = item.info
+    option.series[0].data = item.detail[0]
+    option.series[1].data = item.detail[1]
+    echartsInstance.setOption(option)
   }
 
   let i = 0
@@ -278,95 +451,91 @@
     autoToggle()
   })
 
-  /***
+})();
+
+// 渠道分布逻辑
+(function(){
+  /**
    * 1. 下载echarts (完成)
    * 2. 引入echarts (完成)
    * 3. 创建渲染的画布 (完成)
-   * 4. 实例化echarts, 并指定渲染的画布   (完成)
-   * 5. 创建配置项  (完成)
-   * 6. 渲染数据
-   * 7. 设置图表自适应
+   * 4. 实例化echarts并指定渲染的画布 (完成)
+   * 5. 设置配置项
+   * 6. 渲染echarts图表
+   * 7. 实现图表自适应
    */
+  const radar = document.querySelector(".radar")
+  const echartsInstance = echarts.init(radar)
+  const dataBJ = [[90, 19, 56, 11, 34]];
 
-  const line = document.querySelector(".line")
-  const echartsInstance = echarts.init(line)
-  const option = {
+
+const option = {
+  tooltip: {
+    show: true,
+    // 控制提示框组件的显示位置
+    position: ['40%', '10%'],
+  },
+  radar: {
+      center: ['50%', '50%'],
+      // 外半径占据容器大小
+      radius: '50%',
+    indicator: [
+      { name: '淘宝', max: 90 },
+      { name: '京东', max: 22 },
+      { name: '苏宁', max: 75 },
+      { name: '微商', max: 22 },
+      { name: '其他', max: 132 }
+    ],
+    shape: 'circle',
+    splitNumber: 4,
+    name: {
+      // 修饰雷达图文本颜色
+       textStyle: {
+         color: '#4c9bfd'
+       }
+    },
    
-    tooltip: {
-      trigger: 'axis'
-    },
-    legend: {
-      data: ['Email', 'Union Ads', 'Video Ads', 'Direct', 'Search Engine']
-    },
-    grid: {
-      left: '3%',
-      right: '4%',
-      bottom: '3%',
-      top : '3%',
-      containLabel: true
-    },
-    xAxis: {
-      type: 'category',
-      boundaryGap: false,
-      data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-    },
-    yAxis: {
-      type: 'value'
-    },
-    series: [
-      {
-        name: 'Email',
-        type: 'line',
-        stack: 'Total',
-        data: [120, 132, 101, 134, 90, 230, 210]
-      },
-      {
-        name: 'Union Ads',
-        type: 'line',
-        stack: 'Total',
-        data: [220, 182, 191, 234, 290, 330, 310]
+    splitLine: {
+      lineStyle: {
+        color: 'rgba(255, 255, 255, 0.5)'
       }
-    ]
-  };
+    },
+    splitArea: {
+      show: false
+    },
+    axisLine: {
+      lineStyle: {
+        color: 'rgba(255, 255, 255, 0.5)'
+      }
+    }
+  },
+  series: [
+    {
+      name : '上海',
+      type: 'radar',
+      lineStyle: {
+        normal: {
+             color: '#fff',
+             // width: 1
+        }
+      }, 
+      areaStyle: {
+        color: 'rgba(238, 197, 102, 0.6)',
+      },
+      data: dataBJ,
+      symbol: 'circle',
+      // 拐点的大小  
+      symbolSize: 5, 
+      itemStyle: {
+       color : "#fff"
+      } 
+    }
+  ]
+}
   echartsInstance.setOption(option)
   window.addEventListener("resize", () => {
-    echartsInstance.resize()
+    echartsInstance.resize
   })
-
-  var data = {
-    // 年
-    year: [
-      [24, 40, 101, 134, 90, 230, 210, 230, 120, 230, 210, 120],
-      [40, 64, 191, 324, 290, 330, 310, 213, 180, 200, 180, 79]
-    ],
-    // 季
-    quarter: [
-      [23, 75, 12, 97, 21, 67, 98, 21, 43, 64, 76, 38],
-      [43, 31, 65, 23, 78, 21, 82, 64, 43, 60, 19, 34]
-    ],
-    // 月
-    month: [
-      [34, 87, 32, 76, 98, 12, 32, 87, 39, 36, 29, 36],
-      [56, 43, 98, 21, 56, 87, 43, 12, 43, 54, 12, 98]
-    ],
-    // 周
-    week: [
-      [43, 73, 62, 54, 91, 54, 84, 43, 86, 43, 54, 53],
-      [32, 54, 34, 87, 32, 45, 62, 68, 93, 54, 54, 24]
-    ]
-  }
-
-  $(".caption span").click(function(){
-    const index = ($(this).index()) - 1
-    render(index)
-    const item = data[this.dataset.index]
-    console.log("item",item)
-
-    option.series[0].data = item[0]
-    option.series[1].data = item[1]
-    echartsInstance.setOption(option)
-  })
-
 })();
 
 

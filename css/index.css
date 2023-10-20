@@ -279,10 +279,14 @@
 .sales .chart{
     flex: 1;
     padding-top: 0.1875rem;
+    position: relative;
 }
 .sales .chart .label{
     color: #4996f5;
     font-size: 0.175rem;
+    position: absolute;
+    left: 0.525rem;
+    top: 0.225rem;
 }
 .sales .chart .line{
     width: 100%;
@@ -297,6 +301,13 @@
     flex : 1;
     height: 2.9rem;
     margin-right: .25rem;
+}
+.channel .data {
+    overflow: hidden;
+}
+.channel .data .radar{
+    height : 2.1rem;
+    width: 100%;
 }
 .quarter{
     flex : 1;
